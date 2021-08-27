@@ -1,0 +1,11 @@
+.m-dashboard {
+	display: flex;
+	height: 100vh;
+}
+.m-dashboard .sidebar-wrapper {
+	width: 100px;
+	background-color: #303456;
+}
+.m-dashboard .main-area {
+	flex-grow: 1;
+}
