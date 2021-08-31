@@ -1,14 +1,37 @@
 import React from "react";
 import "./dashboard.css";
 import Sidebar from "../../components/Sidebar";
+import { Route, Switch, useLocation } from "react-router-dom";
+import Main from "../../components/Main";
+import Users from "../../components/Users";
+import Categories from "../../components/Categories";
+import Products from "../../components/Products";
+import Transactions from "../../components/Transactions";
+import Reports from "../../components/Reports";
+import Header from "../../components/Header";
+import { Container } from "@material-ui/core";
 
-function Dashboard() {
+function Dashboard(props) {
+	let basePath = props.match.path;
+
 	return (
 		<div class="m-dashboard">
 			<div className="sidebar-wrapper">
 				<Sidebar />
 			</div>
-			<div className="main-area"></div>
+			<div className="main-area">
+				<Header />
+				<Container>
+					<Switch>
+						<Route path={`${basePath}/main`} component={Main} />
+						<Route path={`${basePath}/users`} component={Users} />
+						<Route path={`${basePath}/categories`} component={Categories} />
+						<Route path={`${basePath}/products`} component={Products} />
+						<Route path={`${basePath}/transactions`} component={Transactions} />
+						<Route path={`${basePath}/reports`} component={Reports} />
+					</Switch>
+				</Container>
+			</div>
 		</div>
 	);
 }
