@@ -1,3 +1,7 @@
+:root {
+	--header-height: 70;
+}
+
 .m-dashboard {
 	display: flex;
 	height: 100vh;
@@ -8,4 +12,8 @@
 }
 .m-dashboard .main-area {
 	flex-grow: 1;
+}
+.m-dashboard .inner-main-area {
+	height: calc(100vh - 10vh);
+	overflow-y: scroll;
 }

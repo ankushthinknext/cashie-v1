@@ -21,16 +21,21 @@ function Dashboard(props) {
 			</div>
 			<div className="main-area">
 				<Header />
-				<Container>
-					<Switch>
-						<Route path={`${basePath}/main`} component={Main} />
-						<Route path={`${basePath}/users`} component={Users} />
-						<Route path={`${basePath}/categories`} component={Categories} />
-						<Route path={`${basePath}/products`} component={Products} />
-						<Route path={`${basePath}/transactions`} component={Transactions} />
-						<Route path={`${basePath}/reports`} component={Reports} />
-					</Switch>
-				</Container>
+				<div className="inner-main-area">
+					<Container>
+						<Switch>
+							<Route path={`${basePath}/main`} component={Main} />
+							<Route path={`${basePath}/users`} component={Users} />
+							<Route path={`${basePath}/categories`} component={Categories} />
+							<Route path={`${basePath}/products`} component={Products} />
+							<Route
+								path={`${basePath}/transactions`}
+								component={Transactions}
+							/>
+							<Route path={`${basePath}/reports`} component={Reports} />
+						</Switch>
+					</Container>
+				</div>
 			</div>
 		</div>
 	);

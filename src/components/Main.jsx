@@ -50,7 +50,15 @@ function Main() {
 		datasets: [
 			{
 				label: "# of Votes",
-				data: [],
+				data: dashboardData && [
+					dashboardData.items[0] && dashboardData.items[0].grandtotal,
+					dashboardData.items[1] && dashboardData.items[1].grandtotal,
+					dashboardData.items[2] && dashboardData.items[2].grandtotal,
+					dashboardData.items[3] && dashboardData.items[3].grandtotal,
+					dashboardData.items[4] && dashboardData.items[4].grandtotal,
+					dashboardData.items[5] && dashboardData.items[5].grandtotal,
+					dashboardData.items[6] && dashboardData.items[6].grandtotal,
+				],
 				fill: true,
 				backgroundColor: "rgb(255, 99, 132)",
 				borderColor: "rgba(255, 99, 132, 0.2)",

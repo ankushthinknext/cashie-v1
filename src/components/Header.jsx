@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
 	navbar: {
 		backgroundColor: "grey",
-		height: "70px",
+		height: "10vh",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "flex-end",
