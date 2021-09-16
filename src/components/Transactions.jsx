@@ -15,8 +15,10 @@ import {
 	Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "../config/axiosConfig";
+import Cart from "./Cart";
+import { CartContext } from "../App";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -56,6 +58,7 @@ const useStyles = makeStyles({
 
 function Transactions() {
 	const classes = useStyles();
+	let cartData = useContext(CartContext);
 	const [allProducts, setAllProducts] = useState(null);
 	const [productsByCategory, setProductsByCategory] = useState(null);
 	const [value, setValue] = React.useState(0);
@@ -104,7 +107,9 @@ function Transactions() {
 							<div className={classes.tabsArea}>
 								{allProducts &&
 									allProducts.map((item) => (
-										<Card className={classes.card}>
+										<Card
+											className={classes.card}
+											onClick={() => cartData.addItem(item)}>
 											<CardActionArea>
 												<CardMedia
 													component="img"
@@ -145,7 +150,9 @@ function Transactions() {
 									<div className={classes.tabsArea}>
 										{category.items &&
 											category.items.map((item) => (
-												<Card className={classes.card}>
+												<Card
+													className={classes.card}
+													onClick={() => cartData.addItem(item)}>
 													<CardActionArea>
 														<CardMedia
 															component="img"
@@ -186,7 +193,9 @@ function Transactions() {
 					</Paper>
 				</Grid>
 				<Grid item lg={4} xs={12}>
-					<Paper>cart</Paper>
+					<Paper>
+						<Cart />
+					</Paper>
 				</Grid>
 			</Grid>
 		</div>
