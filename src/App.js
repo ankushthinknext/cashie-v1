@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Dashboard from "./screens/dashboard/Dashboard";
 import { Route } from "react-router-dom";
+import TestPersons from "./components/TestPersons";
 export const CartContext = React.createContext();
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 	return (
 		<CartContext.Provider
 			value={{ cartItems, addItem, removeItem, increment, decrement }}>
+			<Route path="/test" component={TestPersons} />
 			<Route path="/dashboard" component={Dashboard} />
 		</CartContext.Provider>
 	);
