@@ -19,6 +19,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "../config/axiosConfig";
 import Cart from "./Cart";
 import { CartContext } from "../App";
+import Recipt from "./Recipt";
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -66,6 +67,11 @@ function Transactions() {
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
+	const [reciptModalOpen, setReciptModalOpen] = useState(true);
+	const handleReciptModal = (params) => {
+		setReciptModalOpen(true);
+	};
+
 	useEffect(() => {
 		axios("product/transaction").then((result) => {
 			setAllProducts(result.data.data.all);

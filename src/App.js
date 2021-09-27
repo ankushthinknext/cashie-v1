@@ -8,6 +8,7 @@ export const CartContext = React.createContext();
 
 function App() {
 	const [cartItems, setCartItems] = useState([]);
+
 	const addItem = (item) => {
 		let index = cartItems.findIndex((el) => item._id == el._id);
 		if (index >= 0) {
@@ -16,14 +17,15 @@ function App() {
 			item.qty = 1;
 			setCartItems([...cartItems, item]);
 		}
-		console.log("CART ITEMS", cartItems);
 	};
+
 	const increment = (id) => {
 		let index = cartItems.findIndex((el) => id == el._id);
 		let newItems = [...cartItems];
 		newItems[index].qty++;
 		setCartItems(newItems);
 	};
+
 	const decrement = (id) => {
 		let index = cartItems.findIndex((el) => id == el._id);
 		let newItems = [...cartItems];

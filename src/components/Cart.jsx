@@ -11,10 +11,23 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import { Typography } from "@material-ui/core";
 import axios from "../config/axiosConfig";
+import Recipt from "./Recipt";
 
 function Cart() {
 	let cartData = useContext(CartContext);
 	const [storeSettings, setStoreSettings] = useState(null);
+	const [transactionData, setTransactionData] = useState(null);
+	const [open, setOpen] = React.useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+
+	console.log(transactionData);
 	useEffect(() => {
 		axios("setting").then((response) => setStoreSettings(response.data.data));
 	}, []);
@@ -32,12 +45,19 @@ function Cart() {
 		: 0;
 	grandTotal = storeSettings ? grandTotal + tax : 0;
 	const handleTransaction = () => {
-		axios.post("transaction", {
-			items: cartData.cartItems,
-			discount,
-			grandtotal: grandTotal,
-			subtotal: subTotal,
-		});
+		axios
+			.post("transaction", {
+				items: cartData.cartItems,
+				discount,
+				grandtotal: grandTotal,
+				subtotal: subTotal,
+			})
+			.then((response) => {
+				if (response.status == 200) {
+					setTransactionData(response.data.data);
+					handleClickOpen();
+				}
+			});
 	};
 
 	return (
@@ -111,6 +131,13 @@ function Cart() {
 					</TableRow>
 				</Table>
 			</TableContainer>
+
+			<Recipt
+				isOpen={open}
+				onClickOpen={handleClickOpen}
+				onClose={handleClose}
+				receiptData={transactionData}
+			/>
 		</div>
 	);
 }
